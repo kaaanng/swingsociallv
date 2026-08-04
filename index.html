@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swing Social LV — Mobile Golf Simulator for Vegas Events</title>
+<meta name="description" content="Swing Social brings a full mobile golf simulator in an inflatable tent to your Vegas party, wedding, or corporate event. Clubs, contests & a host included. Book your date.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Swing Social LV — Your event just found its swing.">
+<meta property="og:description" content="Mobile golf simulator delivered to your Las Vegas event. Inflatable tent, full sim, clubs & a host included.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#070806;--panel:#121310;--panel-2:#191a15;--line:rgba(240,240,225,0.12);
+    --paper:#f4f2ea;--paper-dim:#b7b6ab;--paper-faint:#7c7c72;
+    --lime:#c6f036;--lime-deep:#9cc21f;--pink:#ff2b8f;--pink-soft:#ff7ab8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--paper);font-family:"Inter",system-ui,sans-serif;line-height:1.5}
+  .anton{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  a{color:var(--lime);text-decoration:none}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#101711,#070806 70%)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+  .hero .wash{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,6,.45),rgba(7,8,6,.95))}
+  .hero .inner{position:relative;padding:64px 0 56px}
+  .wm{font-family:"Anton";font-size:clamp(54px,11vw,96px);line-height:.84;text-transform:uppercase}
+  .wm .l1{color:var(--paper)} .wm .l2{color:var(--lime)} .wm .l2 b{color:var(--pink);font-weight:400}
+  .tag-serif{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(22px,4.5vw,30px);margin-top:14px;color:var(--paper)}
+  .kicker{font-family:"Anton";font-size:15px;letter-spacing:.03em;margin-top:14px;text-transform:uppercase}
+  .kicker b{color:var(--pink);font-weight:400} .kicker span{color:var(--paper)}
+  .sub{margin-top:14px;max-width:54ch;color:var(--paper-dim);font-size:15px}
+
+  /* FEATURE STRIP */
+  .feats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  .feat{padding:16px 10px;text-align:center;border-right:1px solid var(--line)}
+  .feat:last-child{border-right:none}
+  .feat span{font-family:"Archivo";font-weight:800;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--paper-dim)}
+  @media(max-width:560px){.feats{grid-template-columns:repeat(2,1fr)}.feat:nth-child(2){border-right:none}}
+
+  section.band{padding:46px 0}
+  .band-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .band-head .bar{width:26px;height:5px;background:var(--pink);border-radius:3px}
+  .band-head h2{font-family:"Anton";font-size:30px;text-transform:uppercase}
+  .band-sub{color:var(--paper-faint);font-size:14px;margin-bottom:24px}
+  .band-sub b{color:var(--lime)}
+
+  /* PACKAGES */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 18px;position:relative;display:flex;flex-direction:column}
+  .card.hot{border-color:var(--pink);background:var(--panel-2)}
+  .flag{position:absolute;top:-10px;left:16px;font-family:"Archivo";font-weight:800;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:var(--lime);color:#0d1400}
+  .card.hot .flag{background:var(--pink);color:#fff}
+  .card h3{font-family:"Anton";font-size:22px;text-transform:uppercase;margin-top:6px}
+  .card .price{font-family:"Anton";font-size:40px;color:var(--lime);line-height:1;margin:10px 0 2px}
+  .card.hot .price{color:var(--pink-soft)}
+  .card .price small{font-family:"Inter";font-weight:600;font-size:12px;color:var(--paper-faint)}
+  .card .dur{font-size:11.5px;color:var(--paper-dim);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto}
+  .card li{font-size:12.5px;color:var(--paper-dim);padding-left:16px;position:relative}
+  .card li::before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:2px;background:var(--lime)}
+  .card.hot li::before{background:var(--pink)}
+
+  /* WHY */
+  .why{background:var(--panel-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+  .why-item{display:flex;gap:11px;font-size:13.5px;color:var(--paper-dim);align-items:flex-start}
+  .why-item b{color:var(--paper)}
+  .why-item .k{color:var(--lime);font-family:"Anton";font-size:16px;line-height:1.2;flex:none}
+
+  /* FORM */
+  .lead{background:linear-gradient(100deg,rgba(255,43,143,.16),rgba(198,240,54,.10));border-radius:14px;padding:28px;margin-top:8px}
+  .lead h3{font-family:"Anton";font-size:26px;text-transform:uppercase;color:var(--pink);margin-bottom:4px}
+  .lead p.lr{font-size:13.5px;color:var(--paper-dim);margin-bottom:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .field.full{grid-column:1/-1}
+  label{font-family:"Archivo";font-weight:800;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-dim)}
+  input,select,textarea{background:#0c0d0a;border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--paper);font-family:"Inter";font-size:14px;width:100%}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--lime)}
+  textarea{resize:vertical;min-height:74px}
+  button{font-family:"Anton";font-size:17px;letter-spacing:.04em;text-transform:uppercase;background:var(--lime);color:#0d1400;border:none;border-radius:10px;padding:14px 22px;cursor:pointer;width:100%;transition:transform .08s}
+  button:hover{transform:translateY(-1px)}
+  .fineprint{font-size:11px;color:var(--paper-faint);margin-top:12px;text-align:center}
+  .msg{display:none;padding:14px 16px;border-radius:9px;font-size:14px;margin-top:14px;text-align:center}
+  .msg.ok{display:block;background:rgba(198,240,54,.14);color:var(--lime);border:1px solid rgba(198,240,54,.3)}
+  .msg.err{display:block;background:rgba(255,43,143,.14);color:var(--pink-soft);border:1px solid rgba(255,43,143,.3)}
+  .notcfg{font-size:11px;color:var(--paper-faint);margin-top:8px;text-align:center}
+  .notcfg code{color:var(--lime)}
+
+  footer{padding:30px 0 50px;text-align:center;color:var(--paper-faint);font-size:12px}
+  footer .anton{color:var(--lime);font-size:14px;letter-spacing:.2em;margin-bottom:8px}
+
+  @media(max-width:640px){
+    .cards,.why-grid,.grid2{grid-template-columns:1fr}
+    section.band{padding:36px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <img src="https://images.pexels.com/photos/31212256/pexels-photo-31212256.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Indoor golf simulator with course on screen">
+  <div class="wash"></div>
+  <div class="wrap inner">
+    <div class="wm"><div class="l1">SWING</div><div class="l2">SOCIAL <b>LV</b></div></div>
+    <div class="tag-serif">Your event just found its swing.</div>
+    <div class="kicker"><span>MOBILE GOLF.</span> <b>VEGAS ENERGY.</b> <span>DELIVERED.</span></div>
+    <p class="sub">A full-scale golf simulator in an inflatable tent, brought to your private party, wedding, or corporate event anywhere in Las Vegas. Clubs, contests, and a host included.</p>
+  </div>
+</header>
+
+<!-- FEATURE STRIP -->
+<div class="feats">
+  <div class="feat"><span>Full Simulator Setup</span></div>
+  <div class="feat"><span>Clubs + Balls Included</span></div>
+  <div class="feat"><span>Hosted Contests</span></div>
+  <div class="feat"><span>Delivery + Teardown</span></div>
+</div>
+
+<!-- PACKAGES -->
+<section class="band">
+  <div class="wrap">
+    <div class="band-head"><span class="bar"></span><h2>Choose your round</h2></div>
+    <div class="band-sub"><b>Priced below the valley's going rate</b> — we win your booking on value, then make the event unforgettable with add-ons.</div>
+    <div class="cards">
+      <div class="card">
+        <span class="flag">Starter</span>
+        <h3>Social Swing</h3>
+        <div class="price">$795</div>
+        <div class="dur">3 hours · hosted</div>
+        <ul><li>Full mobile simulator</li><li>Clubs, balls &amp; 300+ courses</li><li>Delivery, setup &amp; teardown</li><li>Dedicated event host</li></ul>
+      </div>
+      <div class="card hot">
+        <span class="flag">Most popular</span>
+        <h3>Main Event</h3>
+        <div class="price">$995</div>
+        <div class="dur">4 hours · hosted + contest</div>
+        <ul><li>Everything in Social Swing</li><li>A live contest format</li><li>Live leaderboard</li><li>Custom guest flow</li></ul>
+      </div>
+      <div class="card">
+        <span class="flag">Corporate</span>
+        <h3>Brand Play</h3>
+        <div class="price">from $1,495</div>
+        <div class="dur">custom · built to scope</div>
+        <ul><li>Corporate &amp; convention formats</li><li>Extended hours &amp; volume</li><li>Custom contests &amp; branding</li><li>Activation flow by scope</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="band why">
+  <div class="wrap">
+    <div class="band-head"><span class="bar"></span><h2>Why Swing Social</h2></div>
+    <div class="why-grid">
+      <div class="why-item"><span class="k">01</span><div><b>Priced under the competition.</b> Same premium experience, a better rate for saying yes early.</div></div>
+      <div class="why-item"><span class="k">02</span><div><b>Insured big-prize contests.</b> A jaw-dropping hole-in-one prize no other local operator offers.</div></div>
+      <div class="why-item"><span class="k">03</span><div><b>Clubs always included.</b> Right- and left-handed sets, never an add-on fee.</div></div>
+      <div class="why-item"><span class="k">04</span><div><b>Handled end to end.</b> We deliver, set up, host, and tear down. You just show up.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="band">
+  <div class="wrap">
+    <div class="lead">
+      <h3>Request your date</h3>
+      <p class="lr">Tell us about your event and we'll get back within 24 hours with availability and a quote.</p>
+      <!-- REPLACE YOUR_FORM_ID with your Formspree form ID (free at formspree.io) -->
+      <form id="leadForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="grid2">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" required placeholder="Jane Doe"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required placeholder="(702) 555-0100"></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="you@email.com"></div>
+          <div class="field"><label for="etype">Event type</label>
+            <select id="etype" name="event_type" required>
+              <option value="">Select…</option>
+              <option>Private party / bachelor</option>
+              <option>Wedding</option>
+              <option>Corporate / activation</option>
+              <option>Convention</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="date">Event date</label><input id="date" name="event_date" type="date"></div>
+          <div class="field"><label for="guests">Guest count</label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
+          <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
+        </div>
+        <button type="submit">Send my request</button>
+        <div class="msg ok" id="ok">Thanks — we've got your request and will reach out within 24 hours. 🏌️</div>
+        <div class="msg err" id="err">Something hiccupped. Text or call us directly and we'll sort it.</div>
+        <p class="notcfg">Form delivers to your inbox via <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> — drop your free form ID into the page's <code>action</code> URL.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="anton">SWING SOCIAL LV</div>
+  <div>Mobile golf simulator · Las Vegas, Nevada</div>
+  <div style="margin-top:6px">Book: [ your phone ] &nbsp;·&nbsp; Email: hello@swingsociallv.com</div>
+</footer>
+
+<script>
+  const form = document.getElementById('leadForm');
+  const ok = document.getElementById('ok');
+  const err = document.getElementById('err');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const action = form.getAttribute('action');
+    if (action.includes('YOUR_FORM_ID')) {
+      err.textContent = 'Form not connected yet — add your Formspree ID in the page code, or text us directly.';
+      err.style.display = 'block'; ok.style.display = 'none';
+      return;
+    }
+    const data = new FormData(form);
+    try {
+      const r = await fetch(action, { method:'POST', body: data, headers:{ 'Accept':'application/json' } });
+      if (r.ok) { ok.style.display='block'; err.style.display='none'; form.reset(); }
+      else { err.style.display='block'; ok.style.display='none'; }
+    } catch (_) { err.style.display='block'; ok.style.display='none'; }
+  });
+</script>
+</body>
+</html>

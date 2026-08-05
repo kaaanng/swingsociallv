@@ -137,7 +137,7 @@
   }
 
   /* CUSTOM DATE CALENDAR POPUP */
-  .cal{position:absolute;z-index:60;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;width:260px;box-shadow:0 12px 30px rgba(0,0,0,.45);margin-top:6px}
+  .cal{position:absolute;top:100%;left:0;right:0;z-index:60;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;width:260px;box-shadow:0 12px 30px rgba(0,0,0,.45);margin-top:6px}
   .cal .chead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
   .cal .chead button{background:none;border:1px solid var(--line);color:var(--paper);border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:14px}
   .cal .ctitle{font-family:"Anton";font-size:14px;letter-spacing:.04em;text-transform:uppercase}
@@ -264,12 +264,11 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="text" readonly placeholder="Select a date" autocomplete="off"></div>
+          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="text" readonly placeholder="Select a date" autocomplete="off"><div id="cal" class="cal" hidden></div></div>
           <div class="field"><label for="phone">Phone <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="phone" name="phone" placeholder="(702) 555-0100"></div>
           <div class="field"><label for="guests">Guest count <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
           <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
         </div>
-        <div id="cal" class="cal" hidden></div>
         <button type="submit">Send my request</button>
         <div class="msg ok" id="ok">Thanks — we've got your request and will reach out within 24 hours. 🏌️</div>
         <div class="msg err" id="err">Something hiccupped. Text or call us directly and we'll sort it.</div>

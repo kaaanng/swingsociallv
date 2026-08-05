@@ -218,7 +218,7 @@
     e.preventDefault();
     const data = new FormData(form);
     try {
-      const r = await fetch(form.getAttribute('action'), { method:'POST', body: data, headers:{ 'Accept':'application/json' } });
+      const r = await fetch(form.getAttribute('action'), { method:'POST', body: data });
       if (r.ok) { ok.style.display='block'; err.style.display='none'; form.reset(); }
       else { err.style.display='block'; ok.style.display='none'; }
     } catch (_) { err.style.display='block'; ok.style.display='none'; }

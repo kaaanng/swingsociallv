@@ -174,8 +174,8 @@
     <div class="lead">
       <h3>Request your date</h3>
       <p class="lr">Tell us about your event and we'll get back within 24 hours with availability and a quote.</p>
-      <!-- REPLACE YOUR_FORM_ID with your Formspree form ID (free at formspree.io) -->
       <form id="leadForm" action="https://formspree.io/f/xkjwwnra" method="POST">
+        <input type="hidden" name="_subject" value="Swing Social — New Lead">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <div class="grid2">
           <div class="field"><label for="name">Your name</label><input id="name" name="name" required placeholder="Jane Doe"></div>
@@ -198,7 +198,7 @@
         <button type="submit">Send my request</button>
         <div class="msg ok" id="ok">Thanks — we've got your request and will reach out within 24 hours. 🏌️</div>
         <div class="msg err" id="err">Something hiccupped. Text or call us directly and we'll sort it.</div>
-        <p class="notcfg">Form delivers to your inbox via <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> — drop your free form ID into the page's <code>action</code> URL.</p>
+        <p class="notcfg">Leads deliver straight to our inbox — no extra setup needed.</p>
       </form>
     </div>
   </div>
@@ -207,7 +207,7 @@
 <footer>
   <div class="anton">SWING SOCIAL LV</div>
   <div>Mobile golf simulator · Las Vegas, Nevada</div>
-  <div style="margin-top:6px">Book: [ your phone ] &nbsp;·&nbsp; Email: hello@swingsociallv.com</div>
+  <div style="margin-top:6px">Book: (702) 376-5557 Nathan &nbsp;·&nbsp; (702) 755-5996 Nick &nbsp;·&nbsp; Email: swingsocial@agentmail.to</div>
 </footer>
 
 <script>
@@ -216,15 +216,9 @@
   const err = document.getElementById('err');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const action = form.getAttribute('action');
-    if (action.includes('YOUR_FORM_ID')) {
-      err.textContent = 'Form not connected yet — add your Formspree ID in the page code, or text us directly.';
-      err.style.display = 'block'; ok.style.display = 'none';
-      return;
-    }
     const data = new FormData(form);
     try {
-      const r = await fetch(action, { method:'POST', body: data, headers:{ 'Accept':'application/json' } });
+      const r = await fetch(form.getAttribute('action'), { method:'POST', body: data, headers:{ 'Accept':'application/json' } });
       if (r.ok) { ok.style.display='block'; err.style.display='none'; form.reset(); }
       else { err.style.display='block'; ok.style.display='none'; }
     } catch (_) { err.style.display='block'; ok.style.display='none'; }

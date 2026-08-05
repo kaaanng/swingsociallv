@@ -318,8 +318,8 @@
         el.onclick = (e)=>{ e.stopPropagation(); dateInput.value = el.dataset.d; cal.hidden = true; };
       });
     }
-    dateInput.addEventListener('click', (e)=>{ e.stopPropagation(); cal.hidden = !cal.hidden; if(!cal.hidden) render(); });
-    document.addEventListener('click', ()=>{ cal.hidden = true; });
+    dateInput.addEventListener('click', (e)=>{ e.stopPropagation(); if(cal.hidden){ cal.hidden=false; render(); } });
+    document.addEventListener('click', (e)=>{ if(cal.hidden) return; if(e.target===dateInput || cal.contains(e.target)) return; cal.hidden=true; });
     cal.addEventListener('click', (e)=> e.stopPropagation());
   })();
 

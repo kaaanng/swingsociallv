@@ -12,6 +12,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- ANALYTICS: paste your IDs below (leave empty to disable) -->
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','000000000000000');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1"/></noscript>
 <style>
   :root{
     --ink:#070806;--panel:#121310;--panel-2:#191a15;--line:rgba(240,240,225,0.12);
@@ -96,6 +103,29 @@
   footer{padding:30px 0 50px;text-align:center;color:var(--paper-faint);font-size:12px}
   footer .anton{color:var(--lime);font-size:14px;letter-spacing:.2em;margin-bottom:8px}
 
+  /* STICKY TAP-TO-CALL (mobile) */
+  .tapbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;background:var(--lime);color:#0d1400;padding:12px 16px;text-align:center;font-family:"Anton";font-size:16px;letter-spacing:.03em;text-transform:uppercase;text-decoration:none}
+  .tapbar:hover{color:#0d1400}
+  @media(max-width:640px){.tapbar{display:block} body{padding-bottom:54px}}
+
+  /* HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .step .n{font-family:"Anton";font-size:30px;color:var(--pink)}
+  .step h4{font-family:"Anton";font-size:18px;text-transform:uppercase;margin:6px 0 4px}
+  .step p{font-size:13px;color:var(--paper-dim)}
+  @media(max-width:640px){.steps{grid-template-columns:1fr}}
+
+  /* FAQ */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:12px 30px;margin-top:8px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .faq summary{font-weight:700;cursor:pointer;font-size:14px;color:var(--paper)}
+  .faq p{font-size:13px;color:var(--paper-dim);margin-top:8px}
+  @media(max-width:640px){.faq{grid-template-columns:1fr}}
+
+  /* urgency */
+  .urgency{text-align:center;font-family:"Anton";text-transform:uppercase;color:var(--lime);font-size:15px;letter-spacing:.04em;margin-top:6px}
+
   @media(max-width:640px){
     .cards,.why-grid,.grid2{grid-template-columns:1fr}
     section.band{padding:36px 0}
@@ -112,7 +142,7 @@
     <div class="wm"><div class="l1">SWING</div><div class="l2">SOCIAL <b>LV</b></div></div>
     <div class="tag-serif">Your event just found its swing.</div>
     <div class="kicker"><span>MOBILE GOLF.</span> <b>VEGAS ENERGY.</b> <span>DELIVERED.</span></div>
-    <p class="sub">A full-scale golf simulator in an inflatable tent, brought to your private party, wedding, or corporate event anywhere in Las Vegas. Clubs, contests, and a host included.</p>
+    <p class="sub">A full-scale golf simulator in an inflatable tent, brought to your private party, wedding, corporate event, or convention anywhere in Las Vegas. Clubs, contests, and a host included. Trusted by brands and planners for activations that actually get people swinging.</p>
   </div>
 </header>
 
@@ -152,6 +182,7 @@
         <ul><li>Corporate &amp; convention formats</li><li>Extended hours &amp; volume</li><li>Custom contests &amp; branding</li><li>Activation flow by scope</li></ul>
       </div>
     </div>
+    <p class="urgency">⚡ Peak Vegas weekends book 4–6 weeks out — lock your date early</p>
   </div>
 </section>
 
@@ -168,7 +199,32 @@
   </div>
 </section>
 
-<!-- LEAD FORM -->
+<!-- HOW IT WORKS -->
+<section class="band">
+  <div class="wrap">
+    <div class="band-head"><span class="bar"></span><h2>How it works</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>We deliver</h4><p>We show up at your venue with the inflatable sim tent, ready to roll.</p></div>
+      <div class="step"><div class="n">2</div><h4>We set up</h4><p>Full build, calibration, and a dedicated host — usually under an hour, zero effort from you.</p></div>
+      <div class="step"><div class="n">3</div><h4>You play</h4><p>Guests swing, compete on the leaderboard, and we tear it all down when it's done.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band why">
+  <div class="wrap">
+    <div class="band-head"><span class="bar"></span><h2>Good to know</h2></div>
+    <div class="faq">
+      <details><summary>How much space do you need?</summary><p>About 15×15 ft of flat, indoor or outdoor space with a standard power outlet nearby. We bring everything else.</p></details>
+      <details><summary>What if it rains?</summary><p>The tent is weather-resistant for covered/outdoor setups. For open outdoor events we'll coordinate a backup spot with you.</p></details>
+      <details><summary>How many can play?</summary><p>One plays at a time on the sim, but with contests and a live leaderboard it keeps a whole party rotating and engaged.</p></details>
+      <details><summary>How long is setup?</summary><p>Typically 45–60 minutes before your start time. We handle delivery, build, and teardown end to end.</p></details>
+      <details><summary>Is it insured?</summary><p>Yes — fully insured, with optional big-prize hole-in-one contests no other local operator offers.</p></details>
+      <details><summary>Do you travel outside Vegas?</summary><p>Based in Las Vegas and serve the metro area. Ask us about farther reaches — we'll make it work.</p></details>
+    </div>
+  </div>
+</section>
 <section class="band">
   <div class="wrap">
     <div class="lead">
@@ -178,10 +234,9 @@
         <input type="hidden" name="_subject" value="Swing Social — New Lead">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <div class="grid2">
-          <div class="field"><label for="name">Your name</label><input id="name" name="name" required placeholder="Jane Doe"></div>
-          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required placeholder="(702) 555-0100"></div>
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="you@email.com"></div>
-          <div class="field"><label for="etype">Event type</label>
+          <div class="field"><label for="name">Your name *</label><input id="name" name="name" required placeholder="Jane Doe"></div>
+          <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@email.com"></div>
+          <div class="field"><label for="etype">Event type *</label>
             <select id="etype" name="event_type" required>
               <option value="">Select…</option>
               <option>Private party / bachelor</option>
@@ -191,14 +246,14 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="date">Event date</label><input id="date" name="event_date" type="date"></div>
-          <div class="field"><label for="guests">Guest count</label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
+          <div class="field"><label for="date">Event date *</label><input id="date" name="event_date" type="date"></div>
+          <div class="field"><label for="phone">Phone <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="phone" name="phone" placeholder="(702) 555-0100"></div>
+          <div class="field"><label for="guests">Guest count <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
           <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
         </div>
         <button type="submit">Send my request</button>
         <div class="msg ok" id="ok">Thanks — we've got your request and will reach out within 24 hours. 🏌️</div>
         <div class="msg err" id="err">Something hiccupped. Text or call us directly and we'll sort it.</div>
-        <p class="notcfg">Leads deliver straight to our inbox — no extra setup needed.</p>
       </form>
     </div>
   </div>
@@ -207,8 +262,11 @@
 <footer>
   <div class="anton">SWING SOCIAL LV</div>
   <div>Mobile golf simulator · Las Vegas, Nevada</div>
-  <div style="margin-top:6px">Book: (702) 376-5557 Nathan &nbsp;·&nbsp; (702) 755-5996 Nick &nbsp;·&nbsp; Email: swingsocial@agentmail.to</div>
+  <div style="margin-top:6px">Book: <a href="tel:7023765557" style="color:var(--lime)">(702) 376-5557</a> Nathan &nbsp;·&nbsp; (702) 755-5996 Nick &nbsp;·&nbsp; Email: swingsocial@agentmail.to</div>
 </footer>
+
+<!-- Sticky mobile tap-to-call -->
+<a class="tapbar" href="tel:7023765557">📞 Book your date — tap to call</a>
 
 <script>
   const form = document.getElementById('leadForm');
@@ -219,7 +277,11 @@
     const data = new FormData(form);
     try {
       const r = await fetch(form.getAttribute('action'), { method:'POST', body: data });
-      if (r.ok) { ok.style.display='block'; err.style.display='none'; form.reset(); }
+      if (r.ok) {
+        ok.style.display='block'; err.style.display='none'; form.reset();
+        if (window.gtag) gtag('event','lead',{event_category:'contact',event_label:'lead_form'});
+        if (window.fbq) fbq('track','Lead');
+      }
       else { err.style.display='block'; ok.style.display='none'; }
     } catch (_) { err.style.display='block'; ok.style.display='none'; }
   });

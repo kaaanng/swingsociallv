@@ -85,7 +85,7 @@
   .lead h3{font-family:"Anton";font-size:26px;text-transform:uppercase;color:var(--pink);margin-bottom:4px}
   .lead p.lr{font-size:13.5px;color:var(--paper-dim);margin-bottom:18px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .field{position:relative;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
   .field.full{grid-column:1/-1}
   label{font-family:"Archivo";font-weight:800;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-dim)}
   input,select,textarea{background:#0c0d0a;border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--paper);font-family:"Inter";font-size:14px;width:100%}
@@ -264,11 +264,12 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="text" readonly placeholder="Select a date" autocomplete="off"><div id="cal" class="cal" hidden></div>
+          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="text" readonly placeholder="Select a date" autocomplete="off"></div>
           <div class="field"><label for="phone">Phone <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="phone" name="phone" placeholder="(702) 555-0100"></div>
           <div class="field"><label for="guests">Guest count <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
           <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
         </div>
+        <div id="cal" class="cal" hidden></div>
         <button type="submit">Send my request</button>
         <div class="msg ok" id="ok">Thanks — we've got your request and will reach out within 24 hours. 🏌️</div>
         <div class="msg err" id="err">Something hiccupped. Text or call us directly and we'll sort it.</div>

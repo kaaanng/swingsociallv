@@ -135,6 +135,19 @@
     .cards,.why-grid,.grid2{grid-template-columns:1fr}
     section.band{padding:36px 0}
   }
+
+  /* CUSTOM DATE CALENDAR POPUP */
+  .cal{position:absolute;z-index:60;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;width:260px;box-shadow:0 12px 30px rgba(0,0,0,.45);margin-top:6px}
+  .cal .chead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .cal .chead button{background:none;border:1px solid var(--line);color:var(--paper);border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:14px}
+  .cal .ctitle{font-family:"Anton";font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+  .cal .cgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+  .cal .dow{font-size:10px;text-align:center;color:var(--paper-faint);padding:2px 0}
+  .cal .day{padding:6px 0;text-align:center;font-size:12px;border-radius:6px;cursor:pointer;color:var(--paper)}
+  .cal .day:hover{background:var(--lime);color:#0d1400}
+  .cal .day.dis{color:var(--paper-faint);opacity:.35;cursor:not-allowed}
+  .cal .day.dis:hover{background:none}
+  .cal .day.sel{background:var(--pink);color:#fff}
 </style>
 </head>
 <body>
@@ -251,7 +264,7 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="date" min="2026-08-05"></div>
+          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="text" readonly placeholder="Select a date" autocomplete="off"><div id="cal" class="cal" hidden></div>
           <div class="field"><label for="phone">Phone <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="phone" name="phone" placeholder="(702) 555-0100"></div>
           <div class="field"><label for="guests">Guest count <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
           <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
@@ -274,6 +287,42 @@
 <a class="tapbar" href="tel:7023765557">📞 Book your date — tap to call</a>
 
 <script>
+
+  // CUSTOM DATE PICKER
+  (function(){
+    const dateInput = document.getElementById('date');
+    const cal = document.getElementById('cal');
+    let view = new Date(); view.setDate(1);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const fmt = d => d.toISOString().slice(0,10);
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const DOW = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+    function render(){
+      const y = view.getFullYear(), m = view.getMonth();
+      let h = '<div class="chead"><button type="button" id="cprev">‹</button><span class="ctitle">'+MONTHS[m]+' '+y+'</span><button type="button" id="cnext">›</button></div>';
+      h += '<div class="cgrid">'+DOW.map(d=>'<div class="dow">'+d+'</div>').join('')+'</div><div class="cgrid">';
+      const first = new Date(y,m,1).getDay();
+      const days = new Date(y,m+1,0).getDate();
+      for(let i=0;i<first;i++) h += '<div></div>';
+      for(let d=1; d<=days; d++){
+        const cur = new Date(y,m,d);
+        const dis = cur < today ? ' dis' : '';
+        const sel = (dateInput.value === fmt(cur)) ? ' sel' : '';
+        h += '<div class="day'+dis+sel+'" data-d="'+fmt(cur)+'">'+d+'</div>';
+      }
+      h += '</div>';
+      cal.innerHTML = h;
+      cal.querySelector('#cprev').onclick = (e)=>{ e.stopPropagation(); view.setMonth(view.getMonth()-1); render(); };
+      cal.querySelector('#cnext').onclick = (e)=>{ e.stopPropagation(); view.setMonth(view.getMonth()+1); render(); };
+      cal.querySelectorAll('.day:not(.dis)').forEach(el=>{
+        el.onclick = (e)=>{ e.stopPropagation(); dateInput.value = el.dataset.d; cal.hidden = true; };
+      });
+    }
+    dateInput.addEventListener('click', (e)=>{ e.stopPropagation(); cal.hidden = !cal.hidden; if(!cal.hidden) render(); });
+    document.addEventListener('click', ()=>{ cal.hidden = true; });
+    cal.addEventListener('click', (e)=> e.stopPropagation());
+  })();
+
   const form = document.getElementById('leadForm');
   const ok = document.getElementById('ok');
   const err = document.getElementById('err');

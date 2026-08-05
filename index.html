@@ -126,6 +126,11 @@
   /* urgency */
   .urgency{text-align:center;font-family:"Anton";text-transform:uppercase;color:var(--lime);font-size:15px;letter-spacing:.04em;margin-top:6px}
 
+
+  /* bigger date picker tap target on mobile */
+  @media(max-width:640px){
+    input[type="date"]::-webkit-calendar-picker-indicator{ width:28px; height:28px; cursor:pointer; opacity:.7 }
+  }
   @media(max-width:640px){
     .cards,.why-grid,.grid2{grid-template-columns:1fr}
     section.band{padding:36px 0}
@@ -246,7 +251,7 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="date">Event date *</label><input id="date" name="event_date" type="date"></div>
+          <div class="field"><label for="date">Event date * <span style="font-weight:500;color:var(--paper-faint)">— tap to pick</span></label><input id="date" name="event_date" type="date" min="2026-08-05"></div>
           <div class="field"><label for="phone">Phone <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="phone" name="phone" placeholder="(702) 555-0100"></div>
           <div class="field"><label for="guests">Guest count <span style="text-transform:none;font-weight:500;color:var(--paper-faint)">(optional)</span></label><input id="guests" name="guest_count" type="number" min="1" placeholder="e.g. 40"></div>
           <div class="field full"><label for="msg">Anything else?</label><textarea id="msg" name="message" placeholder="Venue, vibe, add-ons you're curious about…"></textarea></div>
